@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class ObjectPool: MonoBehaviour
 {
-    public List<Stack<GameObject>> woodPool = new List<Stack<GameObject>>();
-    public List<Stack<GameObject>> logPool = new List<Stack<GameObject>>();
+    private List<Stack<GameObject>> woodPool = new List<Stack<GameObject>>();
+    private List<Stack<GameObject>> logPool = new List<Stack<GameObject>>();
     
     private readonly int layerOffset = 8;
     private readonly int maxWood = 5;
@@ -28,7 +28,6 @@ public class ObjectPool: MonoBehaviour
         GameObject wood;
         int typeNumber = (int) type;
         
-        Debug.Log($"{typeNumber}.inci stack'te {woodPool[typeNumber].Count} obje var");
         if (woodPool[typeNumber].Count > 1)
         {
             wood = woodPool[typeNumber].Pop();
@@ -55,7 +54,6 @@ public class ObjectPool: MonoBehaviour
 
     public GameObject PopLog(WoodType type)
     {
-        Debug.Log("LogPOPPED");
         GameObject log;
         int typeNumber = (int) type;
         
@@ -87,7 +85,6 @@ public class ObjectPool: MonoBehaviour
         {
             Destroy(wood);
         }
-        Debug.Log($"{wood.layer - layerOffset}.inci stack'e obje eklendi. Artik {woodPool[wood.layer - layerOffset].Count} obje var");
     }
 
     public void PushLog(GameObject log)
